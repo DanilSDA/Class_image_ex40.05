@@ -52,7 +52,7 @@ class Admin(User):
         print(f"id = {self._id} , имя = {self._name}")
 
         for k in Admin._users:
-            print(f"{Admin._users[k]}"'\n')
+            print(f"{Admin._users[k]}")
 
 
 
