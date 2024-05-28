@@ -6,22 +6,31 @@ class Animal:
     def __str__(self):
         return f"{self.name} ({self.species})"
 
-class ZooKeeper:
+class StaffMember:
     def __init__(self, name):
         self.name = name
 
+    def perform_duty(self, animal):
+        raise NotImplementedError("Этот метод должен быть переопределен в подклассе")
+
+    def __str__(self):
+        return f"Сотрудник: {self.name}"
+class ZooKeeper(StaffMember):
+    def perform_duty(self, animal):
+        return self.feed_animal(animal)
+
     def feed_animal(self, animal):
-        print(f"{self.name} кормит {animal.name}")
+        return f"{self.name} кормит {animal.name}"
 
     def __str__(self):
         return f"Смотритель зоопарка: {self.name}"
 
-class Veterinarian:
-    def __init__(self, name):
-        self.name = name
+class Veterinarian(StaffMember):
+    def perform_duty(self, animal):
+        return self.heal_animal(animal)
 
     def heal_animal(self, animal):
-        print(f"{self.name} лечит {animal.name}")
+        return f"{self.name} лечит {animal.name}"
 
     def __str__(self):
         return f"Ветеринар: {self.name}"
@@ -65,8 +74,8 @@ my_zoo.show_animals()
 my_zoo.add_staff(lesha)
 my_zoo.add_staff(ivan)
 my_zoo.show_staff()
-ivan.feed_animal(slon)
-lesha.heal_animal(baran)
+print(ivan.perform_duty(slon))
+print(lesha.perform_duty(baran))
 
 
 
